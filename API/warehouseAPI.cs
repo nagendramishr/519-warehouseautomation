@@ -17,8 +17,8 @@ namespace API
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             [CosmosDB(
                 databaseName: "SP519as4",
-                collectionName: "shipments",
-                ConnectionStringSetting  = "CosmosDBConnection")]
+                containerName: "shipments",
+                Connection   = "CosmosDBConnection")]
                 IAsyncCollector<Shipment> shipmentsOut,
                 ILogger log)
         {
