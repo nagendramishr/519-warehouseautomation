@@ -11,11 +11,11 @@ using Microsoft.Extensions.Logging;
 
 namespace API
 {
-    public static class warehouseAPI
+    public static class getShipment
     {
-        [FunctionName("warehouseAPI")]
+        [FunctionName("getShipment")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "warehouseAPI/{shipperID:maxlength(50)}")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "getShipment/{shipperID:maxlength(50)}")] HttpRequest req,
             [CosmosDB(
                 databaseName: "SP519as4",
                 containerName: "shipments",
