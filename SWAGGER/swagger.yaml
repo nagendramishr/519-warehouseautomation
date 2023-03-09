@@ -1,0 +1,129 @@
+openapi: 3.0.3
+info:
+  title: Swagger Petstore - OpenAPI 3.0
+  description: |-
+    This is the API used for warehouse automation.
+
+
+  contact:
+    email: nagendra@bu.edu
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: https://warehouseautomationapi.azurewebsites.net/api
+tags:
+  - name: shipment
+    description: Everything about your Shipments
+
+paths:
+  /getShipment/{shipperID}:
+    get:
+      tags:
+        - shipment
+      summary: Find shipments by shipper ID
+      description: Returns an array of shipments
+      operationId: GetShipment
+      parameters:
+        - name: shipperID
+          in: path
+          description: the ShipperID to return shipments for 
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shipment'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Shipment'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+      security:
+        - api_key: []
+        - petstore_auth:
+            - write:pets
+            - read:pets
+    post:
+      tags:
+        - shipment
+      summary: Updates a shipment in the warehouse with form data
+      description: ''
+      operationId: postShipment
+      parameters:
+        - name: shipperID
+          in: path
+          description: ID of shipper that the shipment belongs to
+          required: true
+          schema:
+            type: string
+      responses:
+        '405':
+          description: Invalid input
+      security:
+        - petstore_auth:
+            - write:pets
+            - read:pets
+
+components:
+  schemas:
+    Shipment:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 8dd89250-4375-4481-8d99-f6570c764ed0
+        ShipperID:
+          type: string
+          example: 8dd89250-4375-4481-8d99-f6570c764ed0
+        ShipmentID:
+          type: string
+          example: 8dd89250-4375-4481-8d99-f6570c764ed0
+        WarehouseID:
+          type: string
+          example: 7
+        Date:
+          type: string
+          format: date-time
+        ShippingPO:
+          type: string
+          description: The Puruchase Order that this shipment belongs to
+          example: 12345
+        BoxesRcvd:
+          type: string
+          example: 123
+  requestBodies:
+    Shipment:
+      description: Shipment object that needs to be added to the warehouse
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Shipment'
+    ShipmentArray:
+      description: List of shipment objects
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Shipment'
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://petstore3.swagger.io/oauth/authorize
+          scopes:
+            write:pets: modify pets in your account
+            read:pets: read your pets
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
