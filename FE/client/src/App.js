@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 /*function App() {
@@ -27,16 +26,6 @@ import './App.css';
 function App() {
   const [word, setWord] = React.useState('Enter Shipper ID');
   const [associations, setAssociations] = React.useState(null);
-  const columns = [
-    {
-      Header: 'ShipmentID',
-      accessor: 'ShipmentID'
-    },
-    {
-      Header: 'Warehouse ID',
-      accessor: 'WarehouseID'
-    }
-  ];
 
   const getAssociations = () => {
     fetch('/api/getShipment/' + word)
