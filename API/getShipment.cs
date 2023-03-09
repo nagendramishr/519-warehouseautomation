@@ -26,6 +26,9 @@ namespace API
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
+            // Check for status codes
+
+
             return new JsonResult(shipmentsIn);     
         }
     }
