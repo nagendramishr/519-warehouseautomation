@@ -26,6 +26,10 @@ namespace API
     [DataContract]
     public partial class Shipment : IEquatable<Shipment>
     { 
+
+        [DataMember(Name="id")]
+        public string id { get; set; }
+
         /// <summary>
         /// Gets or Sets UniversityId
         /// </summary>

@@ -42,6 +42,8 @@ namespace API
                 WarehouseID=WarehouseID, ShippingPO=ShippingPO,
                 BoxesRcvd=BoxesRcvd, ShipperID=shipperID, Date=Date};
 
+                s.id = Guid.NewGuid().ToString();
+
                 await shipmentsOut.AddAsync(s);
                 return new JsonResult(s);
             }
