@@ -22,8 +22,7 @@ namespace API
             [CosmosDB(
                 databaseName: "SP519as4",
                 containerName: "shipments",
-                Connection = "CosmosDBConnection")]
-                IAsyncCollector<Shipment> shipmentsOut,
+                Connection = "CosmosDBConnection")]IAsyncCollector<Shipment> shipmentsOut,
                 string shipperID,
                 ILogger log)
         {
@@ -35,13 +34,13 @@ namespace API
             string WarehouseID = data?.WarehouseID;
             string ShippingPO  = data?.ShippingPO;
             string BoxesRcvd   = data?.BoxesRcvd;
-            string ShipperID   = data?.ShipperID;
+            //string ShipperID   = data?.ShipperID;
             System.DateTime Date        = data?.Date;
 
             try {
                 var s = new Shipment() {ShipmentID=ShipmentID,
                 WarehouseID=WarehouseID, ShippingPO=ShippingPO,
-                BoxesRcvd=BoxesRcvd, ShipperID=ShipperID, Date=Date};
+                BoxesRcvd=BoxesRcvd, ShipperID=shipperID, Date=Date};
 
                 await shipmentsOut.AddAsync(s);
                 return new JsonResult(s);
