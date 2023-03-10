@@ -6,9 +6,7 @@ const unirest = require("unirest");
 
 app.get('/api/getShipment/:shipperID', (req, res) => {
   const request = unirest("GET", "https://warehouseautomationapi.azurewebsites.net/api/getShipment/"+req.params.shipperID);
-  request.headers({
-    "x-functions-key": "teYlViSj6InWRcvVecmGI1SNvwvXgcvEmRrF3cbvu296AzFumuvTyw==",
-  });
+  request.headers({"x-functions-key": process.env.HOSTKEY });
 
   request.end(function (response) {
     if (response.error) throw new Error(response.error);
