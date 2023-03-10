@@ -18,7 +18,7 @@ namespace API
     {
         [FunctionName("putShipment")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = "putShipment/{shipperID:maxlength(50)}")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.System, "post", Route = "putShipment/{shipperID:maxlength(50)}")] HttpRequest req,
             [CosmosDB(
                 databaseName: "SP519as4",
                 containerName: "shipments",
