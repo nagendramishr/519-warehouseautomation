@@ -45,13 +45,20 @@ jobs:
         cache: 'npm'
         cache-dependency-path: FE/package-lock.json
 
-    - name: npm install, build, and test
+    - name: npm install
+      working-directory: './${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
       run: |
-        pushd './${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
+        #pushd './${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
         npm install
         # cd client; npm install ; npm run build
-        popd
+        #popd
 
+    - name: npm build client
+      working-directory: './${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/client'
+      run: |
+        npm install
+        npm run build
+        
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v3
       with:
