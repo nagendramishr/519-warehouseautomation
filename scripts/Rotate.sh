@@ -3,7 +3,7 @@
 export group=warehouseautomationapi
 export subscription=c9e7aaf4-2cb3-40e0-b1dd-54276cbdfd8b
 
-az ad sp create-for-rbac --name nvmsp1 --role "contributor" --scopes /subscriptions/$subscription/resourceGroups/$grou
+az ad sp create-for-rbac --name nvmsp1 --role "contributor" --scopes /subscriptions/$subscription/resourceGroups/$group --sdk-auth
 
 
 
