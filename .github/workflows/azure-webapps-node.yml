@@ -63,6 +63,9 @@ jobs:
       working-directory: './${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/client'
       run: |
         npm run build
+        rm -r public
+        rm -r node_mobules
+        rm -r src
         
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v3
