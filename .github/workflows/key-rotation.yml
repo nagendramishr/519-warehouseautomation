@@ -27,7 +27,7 @@ jobs:
     
     steps:
     - name: Install Azure CLI
-      uses: azure/cli@v2
+      uses: azure/cli@v1
       with:
         azcliversion: latest
 
