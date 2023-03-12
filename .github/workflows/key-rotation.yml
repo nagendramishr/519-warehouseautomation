@@ -18,8 +18,8 @@ name: Rotate keys every month
 on:
   workflow_dispatch:
   schedule:
-#    - cron: '0 0 1 * *'
-    - cron: '*/15 * * * *'
+    - cron: '0 0 1 * *'
+#    - cron: '*/15 * * * *'
 
 jobs:
   rotate-keys:
