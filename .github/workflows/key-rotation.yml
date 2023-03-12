@@ -23,12 +23,14 @@ on:
 
 jobs:
   rotate-keys:
-    runs-on: ubuntu-latest
+   runs-on: ubuntu-latest
     
-    steps:
-    - name: Checkout code
+   steps:
+    - name: Checkout this repo
       uses: actions/checkout@v2
-      
+      with:
+         fetch-depth: 2
+         
     - name: Install Azure CLI
       uses: azure/cli@v2
       with:
