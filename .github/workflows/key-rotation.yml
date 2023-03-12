@@ -16,6 +16,7 @@
 name: Rotate keys every month
 
 on:
+  workflow_dispatch:
   schedule:
 #    - cron: '0 0 1 * *'
     - cron: '*/15 * * * *'
@@ -23,8 +24,13 @@ on:
 jobs:
   rotate-keys:
     runs-on: ubuntu-latest
-
+    
     steps:
+    - name: Install Azure CLI
+      uses: azure/cli@v2
+      with:
+        azcliversion: latest
+
     - name: Login to Azure
       uses: azure/login@v1
       with:
