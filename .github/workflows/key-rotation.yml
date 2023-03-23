@@ -38,7 +38,7 @@ jobs:
 
     - name: Rotate keys
       run: |
-        export group=warehouseautomationapi
+        export group=warehouseautomation
         export api=warehouseAutomationAPI
         export fe=nvmwarehouseautomation
         export val=`az functionapp keys set  -n $api -g $group --key-type systemKeys --key-name k1 | jq '.value'| tr -d '"'`
